@@ -24,8 +24,8 @@ const navLinks: { label: string; view: ViewType }[] = [
   { label: 'Contact', view: 'contact' },
 ]
 
-/* Views that use a dark hero background (nav starts transparent-white, then sticks white) */
-const darkHeroViews: ViewType[] = ['home', 'services', 'about']
+/* ONLY the homepage has a dark hero that justifies a transparent nav */
+const darkHeroViews: ViewType[] = ['home']
 
 /* Inner detail pages that show a back arrow */
 const innerPages: ViewType[] = ['product', 'dashboard', 'admin']
@@ -34,8 +34,15 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  /*
+   * LOGO RULE:
+   * - Home page (dark hero): transparent header while at top, solid white after scroll.
+   * - Every other page: ALWAYS solid white header with dark teal wordmark.
+   * This ensures the "Thulie's" word never disappears on light backgrounds.
+   */
   const isDarkHero = darkHeroViews.includes(currentView) && !scrolled
   const isInner = innerPages.includes(currentView)
+  const useDarkText = !isDarkHero
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -49,9 +56,6 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
     setMobileOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
-  /* Determine header surface: always solid-white on non-dark-hero pages or after scroll */
-  const useDarkText = !isDarkHero || scrolled
 
   return (
     <>
@@ -67,7 +71,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
-            {/* Logo */}
+            {/* Logo — always readable */}
             <button
               onClick={() => handleNav('home')}
               className="flex items-center gap-2 group"
@@ -76,7 +80,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 <Package className="w-4 h-4 text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                <span className={useDarkText ? 'text-gray-900' : 'text-white'}>Thulie's</span>
+                <span className={useDarkText ? 'text-[#0D9488]' : 'text-white'}>Thulie&apos;s</span>
                 <span className="text-[#0D9488]"> Corner</span>
               </span>
             </button>
