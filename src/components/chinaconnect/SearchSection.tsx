@@ -57,7 +57,7 @@ export default function SearchSection() {
       <div className="absolute -left-24 top-1/3 w-72 h-72 bg-[#0D9488]/[0.06] rounded-full blur-[90px] pointer-events-none" />
       <div className="absolute -right-24 bottom-1/4 w-80 h-80 bg-[#F59E0B]/[0.05] rounded-full blur-[90px] pointer-events-none" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

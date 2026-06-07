@@ -47,7 +47,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
           backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
       {/* Mission */}
       <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
             <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
@@ -95,7 +95,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
       {/* Values */}
       <section className="py-24 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Values</h2>
             <p className="text-gray-500">The principles that guide everything we build</p>
@@ -123,7 +123,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
       {/* Location */}
       <section className="py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Text */}
             <div>

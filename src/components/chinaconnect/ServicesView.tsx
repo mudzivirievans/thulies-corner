@@ -65,7 +65,7 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
           backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
 
       {/* Services Grid */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <motion.div
@@ -124,12 +124,12 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
 
       {/* CTA */}
       <section className="py-24 bg-[#F8FAFC]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start Importing?</h2>
           <p className="text-gray-500 text-lg mb-8 max-w-2xl mx-auto">
             Tell us what you need — our team handles sourcing, payment, shipping, and compliance from end to end.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               onClick={() => onNavigate('contact')}
               size="lg"

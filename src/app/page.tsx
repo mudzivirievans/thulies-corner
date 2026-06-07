@@ -59,7 +59,7 @@ export default function Home() {
 
               {/* Testimonials */}
               <section className="pt-24 pb-28 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
                   <div className="text-center mb-14">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Businesses Across Botswana</h2>
                     <p className="text-gray-500 text-lg">From small shops to large enterprises, everyone imports with Thulie&apos;s Corner</p>
@@ -103,7 +103,7 @@ export default function Home() {
 
               {/* CTA */}
               <section className="pt-32 pb-28 bg-[#F8FAFC]">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ export default function Home() {
                     <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
                       Create your free account and start importing from China today. Track every shipment, pay securely, and manage all your imports from one dashboard.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                       <button
                         onClick={() => handleNavigate('login')}
                         className="px-8 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl font-semibold shadow-[0_10px_30px_-12px_rgba(15,23,42,0.18)] hover:shadow-[0_12px_34px_-12px_rgba(15,23,42,0.22)] transition-all"

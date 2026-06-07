@@ -13,7 +13,7 @@ export default function MeetThulieSection() {
 
   return (
     <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Photo placeholder */}
           <motion.div

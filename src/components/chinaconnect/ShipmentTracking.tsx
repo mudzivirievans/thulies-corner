@@ -29,7 +29,7 @@ export default function ShipmentTracking({ onNavigate }: ShipmentTrackingProps) 
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] pt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 py-8">
         {/* Search */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Track Your Shipment</h1>

@@ -20,7 +20,7 @@ export default function ContactView() {
     <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
       <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export default function ContactView() {
 
       {/* Contact Content */}
       <section className="pb-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-6">

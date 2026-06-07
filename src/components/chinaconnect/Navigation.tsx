@@ -75,7 +75,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo — always readable */}
             <button
@@ -186,7 +186,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
       {/* Back button for inner/detail pages */}
       {isInner && (
         <div className="fixed top-[72px] left-0 right-0 z-40 bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
             <button
               onClick={() => handleNav(currentView === 'product' ? 'shop' : 'home')}
               className="flex items-center gap-2 py-3 text-sm font-medium text-[#0D9488] hover:text-[#0F766E] transition-colors"

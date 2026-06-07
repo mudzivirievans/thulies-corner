@@ -89,7 +89,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
     <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
       <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
 
       {/* Pricing Cards */}
       <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           {/* Reassurance — clarifies the per-order model up front */}
           <div className="max-w-2xl mx-auto mb-10 flex items-center justify-center gap-2.5 text-center px-5 py-3 rounded-xl bg-teal-50 border border-teal-100">
             <Check className="w-4 h-4 text-[#0D9488] flex-shrink-0" />
@@ -171,7 +171,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
 
       {/* Fee breakdown */}
       <section className="py-24 bg-[#F8FAFC]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Transparent Fee Breakdown</h2>
             <p className="text-gray-500">You always know what you&apos;re paying for</p>
@@ -216,7 +216,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
 
       {/* FAQ */}
       <section className="py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => {

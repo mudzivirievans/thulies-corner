@@ -12,7 +12,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     <footer className="bg-[#0A0E17] text-white">
       {/* Soft transition seam easing the jump from the light section above */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-[#0D9488]/30 to-transparent" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">

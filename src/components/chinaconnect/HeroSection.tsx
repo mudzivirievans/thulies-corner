@@ -178,7 +178,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
       </div>
 
       {/* ===== Content: Left-aligned with right visual ===== */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT: Headline + CTAs */}
           <div>
@@ -221,7 +221,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 items-start"
             >
               <Button
                 onClick={() => onNavigate('shop')}
