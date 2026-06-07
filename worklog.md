@@ -35,3 +35,31 @@ Stage Summary:
 - AI Import Assistant always available as floating chat
 - Premium design following Stripe/Apple/Linear aesthetic
 - ESLint passes clean, dev server running
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Priority fixes — P1 logo/nav, P2 category colors, P3 tracking section, P4 Shein, P5 Meet Thulie
+
+Work Log:
+- P1: Rewrote Navigation.tsx with smart dark/light text adaptation — dark hero pages (home, services, about) get white text that transitions to dark on scroll; all other pages always show solid white header with dark logo
+- P1: Added back button bar (← Back) on inner pages (product, dashboard, admin)
+- P1: Nav now appears on ALL pages including login
+- P2: Gave each category its own soft color identity — Electronics blue, Fashion coral, Home sand, Industrial slate, Solar amber, Auto sky-blue, Beauty pink, Gaming violet, Office teal
+- P2: Each card has matching icon tile color, gradient tint background, hover lift (-translate-y-1) + deepened tint overlay
+- P3: Created new TrackingSection component — moved the China→Botswana route visual + milestone cards out of hero into its own "Track Every Step, From Shenzhen to Your Door" section
+- P3: Added working track lookup: type CN-2847 → animated progress bar + 6-stage timeline (Order Placed → Delivered)
+- P3: Mobile-responsive: stacked milestone cards + simplified route line on small screens
+- P4: Added "Shein" to Source-from row in SearchSection
+- P5: Created MeetThulieSection — photo placeholder with decorative bg, personal quote in her voice, trust points, "Personally Inspected" floating badge
+- Stripped hero down to clean headline + CTAs (no more floating cards)
+- Reordered homepage: Hero → Search → Meet Thulie → Categories → Tracking → How It Works → Testimonials → CTA
+- All 21 browser verification checks pass
+
+Stage Summary:
+- Logo always readable on every page (dark-on-white or white-on-dark)
+- Nav links work on every page with current-page highlighting
+- Categories now colorful with distinct per-category identities
+- Tracking section is interactive with animated timeline lookup
+- Shein added as consumer fashion source
+- Meet Thulie section adds personal, warm touch that differentiates the brand

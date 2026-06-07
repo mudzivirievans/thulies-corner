@@ -1,12 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navigation, { ViewType } from '@/components/chinaconnect/Navigation'
 import HeroSection from '@/components/chinaconnect/HeroSection'
 import SearchSection from '@/components/chinaconnect/SearchSection'
 import CategoriesSection from '@/components/chinaconnect/CategoriesSection'
 import HowItWorks from '@/components/chinaconnect/HowItWorks'
+import TrackingSection from '@/components/chinaconnect/TrackingSection'
+import MeetThulieSection from '@/components/chinaconnect/MeetThulieSection'
 import ShopView from '@/components/chinaconnect/ShopView'
 import ProductDetail from '@/components/chinaconnect/ProductDetail'
 import DashboardView from '@/components/chinaconnect/DashboardView'
@@ -28,15 +30,16 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  /* Inner pages that need extra top padding for the back bar */
+  const needsBackBar = ['product', 'dashboard', 'admin'].includes(currentView)
+
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navigation - visible on all pages except login */}
-      {currentView !== 'login' && (
-        <Navigation currentView={currentView} onNavigate={handleNavigate} />
-      )}
+      {/* Navigation — on EVERY page */}
+      <Navigation currentView={currentView} onNavigate={handleNavigate} />
 
       {/* Main content */}
-      <main className="flex-1">
+      <main className={`flex-1 ${needsBackBar ? 'pt-[112px]' : ''}`}>
         <AnimatePresence mode="wait">
           {currentView === 'home' && (
             <motion.div
@@ -48,15 +51,17 @@ export default function Home() {
             >
               <HeroSection onNavigate={handleNavigate} />
               <SearchSection />
+              <MeetThulieSection />
               <CategoriesSection onNavigate={handleNavigate} />
+              <TrackingSection />
               <HowItWorks />
 
-              {/* Testimonial / Social Proof Section */}
+              {/* Testimonials */}
               <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-14">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Businesses Across Botswana</h2>
-                    <p className="text-gray-500 text-lg">From small shops to large enterprises, everyone imports with Thulie's Corner</p>
+                    <p className="text-gray-500 text-lg">From small shops to large enterprises, everyone imports with Thulie&apos;s Corner</p>
                   </div>
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
@@ -95,7 +100,7 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* CTA Section */}
+              {/* CTA */}
               <section className="py-24 bg-[#F8FAFC]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                   <motion.div
@@ -201,7 +206,7 @@ export default function Home() {
         </AnimatePresence>
       </main>
 
-      {/* AI Assistant - always available */}
+      {/* AI Assistant — always available */}
       <AIAssistant />
     </div>
   )

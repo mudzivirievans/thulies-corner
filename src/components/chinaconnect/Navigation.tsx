@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Menu, X, ChevronDown, User, LogIn, ShoppingCart,
-  Package, Search, BarChart3, Settings, Truck, MessageCircle
+  Menu, X, ArrowLeft, User, Package, Truck
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -25,13 +24,23 @@ const navLinks: { label: string; view: ViewType }[] = [
   { label: 'Contact', view: 'contact' },
 ]
 
+/* Views that use a dark hero background (nav starts transparent-white, then sticks white) */
+const darkHeroViews: ViewType[] = ['home', 'services', 'about']
+
+/* Inner detail pages that show a back arrow */
+const innerPages: ViewType[] = ['product', 'dashboard', 'admin']
+
 export default function Navigation({ currentView, onNavigate }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
+  const isDarkHero = darkHeroViews.includes(currentView) && !scrolled
+  const isInner = innerPages.includes(currentView)
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -41,6 +50,9 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  /* Determine header surface: always solid-white on non-dark-hero pages or after scroll */
+  const useDarkText = !isDarkHero || scrolled
+
   return (
     <>
       <motion.nav
@@ -48,13 +60,13 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.05)] border-b border-gray-100/50'
+          useDarkText
+            ? 'bg-white/95 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06)] border-b border-gray-100/60'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-18">
+          <div className="flex items-center justify-between h-16 lg:h-[72px]">
             {/* Logo */}
             <button
               onClick={() => handleNav('home')}
@@ -64,7 +76,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 <Package className="w-4 h-4 text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                <span className={scrolled ? 'text-gray-900' : 'text-white'}>Thulie's</span>
+                <span className={useDarkText ? 'text-gray-900' : 'text-white'}>Thulie's</span>
                 <span className="text-[#0D9488]"> Corner</span>
               </span>
             </button>
@@ -77,10 +89,10 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                   onClick={() => handleNav(link.view)}
                   className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     currentView === link.view
-                      ? scrolled
+                      ? useDarkText
                         ? 'text-[#0D9488] bg-teal-50'
                         : 'text-white bg-white/10'
-                      : scrolled
+                      : useDarkText
                         ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                         : 'text-white/70 hover:text-white hover:bg-white/10'
                   }`}
@@ -96,7 +108,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 variant="ghost"
                 size="sm"
                 onClick={() => handleNav('track')}
-                className={scrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
+                className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
               >
                 <Truck className="w-4 h-4 mr-1.5" />
                 Track
@@ -105,7 +117,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 variant="ghost"
                 size="sm"
                 onClick={() => handleNav('dashboard')}
-                className={scrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
+                className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
               >
                 <User className="w-4 h-4 mr-1.5" />
                 Account
@@ -123,7 +135,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 rounded-lg ${
-                scrolled ? 'text-gray-600' : 'text-white'
+                useDarkText ? 'text-gray-600' : 'text-white'
               }`}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -131,6 +143,21 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
           </div>
         </div>
       </motion.nav>
+
+      {/* Back button for inner/detail pages */}
+      {isInner && (
+        <div className="fixed top-[72px] left-0 right-0 z-40 bg-white border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <button
+              onClick={() => handleNav(currentView === 'product' ? 'shop' : 'home')}
+              className="flex items-center gap-2 py-3 text-sm font-medium text-[#0D9488] hover:text-[#0F766E] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Mobile Menu */}
       <AnimatePresence>

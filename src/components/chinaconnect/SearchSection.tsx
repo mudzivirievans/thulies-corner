@@ -55,7 +55,7 @@ export default function SearchSection() {
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                placeholder="Search products, categories, or paste a link from Alibaba, 1688, Taobao..."
+                placeholder="Search products, categories, or paste a link from Alibaba, 1688, Taobao, Shein..."
                 className="flex-1 text-base text-gray-900 placeholder-gray-400 outline-none bg-transparent"
               />
               <button className="flex-shrink-0 px-5 py-2.5 bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl font-medium text-sm transition-colors flex items-center gap-2">
@@ -89,7 +89,7 @@ export default function SearchSection() {
           className="flex items-center justify-center gap-8 mt-12 pt-8 border-t border-gray-100"
         >
           <span className="text-sm text-gray-400">Source from</span>
-          {['Alibaba', '1688', 'Taobao', 'AliExpress'].map((platform) => (
+          {['Alibaba', '1688', 'Taobao', 'AliExpress', 'Shein'].map((platform) => (
             <span key={platform} className="text-sm font-semibold text-gray-300 hover:text-gray-500 transition-colors cursor-default">
               {platform}
             </span>
