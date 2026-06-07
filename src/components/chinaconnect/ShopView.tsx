@@ -9,24 +9,25 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Slider } from '@/components/ui/slider'
+import { stockImages } from './stockImages'
 
 interface ShopViewProps {
   onNavigate: (view: string) => void
 }
 
 const products = [
-  { id: 1, name: 'iPhone 17 Pro Max', category: 'Electronics', price: 12500, originalPrice: 15800, rating: 4.9, reviews: 342, image: '📱', supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: 'Best Seller' },
-  { id: 2, name: 'Solar Panel 400W Monocrystalline', category: 'Solar Solutions', price: 2800, originalPrice: 3200, rating: 4.8, reviews: 189, image: '☀️', supplier: 'Jiangsu Solar Ltd.', shipping: '14-21 days', badge: 'Eco' },
-  { id: 3, name: 'Executive Office Chair Ergonomic', category: 'Office Supplies', price: 1850, originalPrice: 2400, rating: 4.7, reviews: 256, image: '🪑', supplier: 'Foshan Furniture Co.', shipping: '14-21 days', badge: 'Popular' },
-  { id: 4, name: 'Mining Drill Bit Set Professional', category: 'Industrial Equipment', price: 8900, originalPrice: 11000, rating: 4.6, reviews: 78, image: '⛏️', supplier: 'Hebei Industrial Ltd.', shipping: '21-30 days', badge: 'B2B' },
-  { id: 5, name: 'Designer Leather Handbag Collection', category: 'Fashion', price: 650, originalPrice: 890, rating: 4.8, reviews: 512, image: '👜', supplier: 'Guangzhou Fashion Hub', shipping: '7-14 days', badge: 'Trending' },
-  { id: 6, name: 'Gaming Laptop RTX 5070 16"', category: 'Gaming', price: 18500, originalPrice: 22000, rating: 4.9, reviews: 234, image: '🎮', supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: 'New' },
-  { id: 7, name: 'Toyota Land Cruiser Brake Pads', category: 'Auto Parts', price: 450, originalPrice: 620, rating: 4.5, reviews: 167, image: '🚗', supplier: 'Zhejiang Auto Parts', shipping: '14-21 days', badge: '' },
-  { id: 8, name: 'Premium Skincare Bundle 12-Piece', category: 'Beauty Products', price: 890, originalPrice: 1200, rating: 4.7, reviews: 398, image: '✨', supplier: 'Guangzhou Beauty Co.', shipping: '7-14 days', badge: 'Popular' },
-  { id: 9, name: 'Smart Home Camera 4K System', category: 'Electronics', price: 2200, originalPrice: 2800, rating: 4.6, reviews: 145, image: '📷', supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: '' },
-  { id: 10, name: 'Industrial LED Flood Light 200W', category: 'Industrial Equipment', price: 780, originalPrice: 950, rating: 4.4, reviews: 89, image: '💡', supplier: 'Ningbo Lighting Ltd.', shipping: '14-21 days', badge: '' },
-  { id: 11, name: 'Women\'s Running Shoes Athletic', category: 'Fashion', price: 380, originalPrice: 520, rating: 4.7, reviews: 623, image: '👟', supplier: 'Putian Shoes Factory', shipping: '7-14 days', badge: 'Trending' },
-  { id: 12, name: 'Standing Desk Electric Adjustable', category: 'Office Supplies', price: 4200, originalPrice: 5500, rating: 4.8, reviews: 198, image: '🖥️', supplier: 'Foshan Furniture Co.', shipping: '14-21 days', badge: 'Popular' },
+  { id: 1, name: 'iPhone 17 Pro Max', category: 'Electronics', price: 12500, originalPrice: 15800, rating: 4.9, reviews: 342, image: '📱', img: stockImages.p_iphone, supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: 'Best Seller' },
+  { id: 2, name: 'Solar Panel 400W Monocrystalline', category: 'Solar Solutions', price: 2800, originalPrice: 3200, rating: 4.8, reviews: 189, image: '☀️', img: stockImages.p_solar, supplier: 'Jiangsu Solar Ltd.', shipping: '14-21 days', badge: 'Eco' },
+  { id: 3, name: 'Executive Office Chair Ergonomic', category: 'Office Supplies', price: 1850, originalPrice: 2400, rating: 4.7, reviews: 256, image: '🪑', img: stockImages.p_chair, supplier: 'Foshan Furniture Co.', shipping: '14-21 days', badge: 'Popular' },
+  { id: 4, name: 'Mining Drill Bit Set Professional', category: 'Industrial Equipment', price: 8900, originalPrice: 11000, rating: 4.6, reviews: 78, image: '⛏️', img: stockImages.p_drill, supplier: 'Hebei Industrial Ltd.', shipping: '21-30 days', badge: 'B2B' },
+  { id: 5, name: 'Designer Leather Handbag Collection', category: 'Fashion', price: 650, originalPrice: 890, rating: 4.8, reviews: 512, image: '👜', img: stockImages.p_handbag, supplier: 'Guangzhou Fashion Hub', shipping: '7-14 days', badge: 'Trending' },
+  { id: 6, name: 'Gaming Laptop RTX 5070 16"', category: 'Gaming', price: 18500, originalPrice: 22000, rating: 4.9, reviews: 234, image: '🎮', img: stockImages.p_laptop, supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: 'New' },
+  { id: 7, name: 'Toyota Land Cruiser Brake Pads', category: 'Auto Parts', price: 450, originalPrice: 620, rating: 4.5, reviews: 167, image: '🚗', img: stockImages.p_brakes, supplier: 'Zhejiang Auto Parts', shipping: '14-21 days', badge: '' },
+  { id: 8, name: 'Premium Skincare Bundle 12-Piece', category: 'Beauty Products', price: 890, originalPrice: 1200, rating: 4.7, reviews: 398, image: '✨', img: stockImages.p_skincare, supplier: 'Guangzhou Beauty Co.', shipping: '7-14 days', badge: 'Popular' },
+  { id: 9, name: 'Smart Home Camera 4K System', category: 'Electronics', price: 2200, originalPrice: 2800, rating: 4.6, reviews: 145, image: '📷', img: stockImages.p_camera, supplier: 'Shenzhen Tech Co.', shipping: '7-14 days', badge: '' },
+  { id: 10, name: 'Industrial LED Flood Light 200W', category: 'Industrial Equipment', price: 780, originalPrice: 950, rating: 4.4, reviews: 89, image: '💡', img: stockImages.p_led, supplier: 'Ningbo Lighting Ltd.', shipping: '14-21 days', badge: '' },
+  { id: 11, name: 'Women\'s Running Shoes Athletic', category: 'Fashion', price: 380, originalPrice: 520, rating: 4.7, reviews: 623, image: '👟', img: stockImages.p_shoes, supplier: 'Putian Shoes Factory', shipping: '7-14 days', badge: 'Trending' },
+  { id: 12, name: 'Standing Desk Electric Adjustable', category: 'Office Supplies', price: 4200, originalPrice: 5500, rating: 4.8, reviews: 198, image: '🖥️', img: stockImages.p_desk, supplier: 'Foshan Furniture Co.', shipping: '14-21 days', badge: 'Popular' },
 ]
 
 const categories = ['All', 'Electronics', 'Fashion', 'Home & Living', 'Industrial Equipment', 'Solar Solutions', 'Auto Parts', 'Beauty Products', 'Gaming', 'Office Supplies']
@@ -160,8 +161,8 @@ export default function ShopView({ onNavigate }: ShopViewProps) {
           <p className="text-sm text-gray-500">{filteredProducts.length} products found</p>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {/* Product Grid — 2 columns on mobile (Shein/Amazon-style) */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -171,9 +172,17 @@ export default function ShopView({ onNavigate }: ShopViewProps) {
               onClick={() => onNavigate('product')}
               className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-gray-200 transition-all duration-300 cursor-pointer"
             >
-              {/* Image area */}
-              <div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
-                <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>
+              {/* Image area — real product photo, emoji shows if it fails to load */}
+              <div className="relative h-52 bg-gradient-to-br from-gray-100 to-gray-50 overflow-hidden">
+                <span className="absolute inset-0 flex items-center justify-center text-6xl">{product.image}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={product.img}
+                  alt={product.name}
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  className="relative w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
                 {product.badge && (
                   <div className="absolute top-3 left-3">
                     <span className={`px-2.5 py-1 rounded-md text-xs font-semibold border ${badgeColors[product.badge] || 'bg-gray-50 text-gray-600'}`}>

@@ -1,116 +1,85 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Smartphone, Shirt, Home, Factory, Sun, Cog, Sparkles, Gamepad2, Briefcase,
-  ArrowUpRight, ArrowRight
+  ArrowUpRight, ArrowRight, type LucideIcon
 } from 'lucide-react'
+import { stockImages } from './stockImages'
 
 interface CategoriesSectionProps {
   onNavigate: (view: string) => void
 }
 
-const categories = [
-  {
-    icon: Smartphone,
-    label: 'Electronics',
-    count: '12K+',
-    /* electric-blue identity */
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-blue-600',
-    cardTint: 'bg-gradient-to-br from-blue-50/80 to-white',
-    hoverTint: 'from-blue-100/90 to-blue-50/60',
-    borderHover: 'hover:border-blue-200',
-  },
-  {
-    icon: Shirt,
-    label: 'Fashion',
-    count: '8K+',
-    /* warm coral/peach */
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-600',
-    cardTint: 'bg-gradient-to-br from-orange-50/80 to-white',
-    hoverTint: 'from-orange-100/90 to-orange-50/60',
-    borderHover: 'hover:border-orange-200',
-  },
-  {
-    icon: Home,
-    label: 'Home & Living',
-    count: '6K+',
-    /* soft sand */
-    iconBg: 'bg-amber-100',
-    iconColor: 'text-amber-700',
-    cardTint: 'bg-gradient-to-br from-amber-50/80 to-white',
-    hoverTint: 'from-amber-100/90 to-amber-50/60',
-    borderHover: 'hover:border-amber-200',
-  },
-  {
-    icon: Factory,
-    label: 'Industrial Equipment',
-    count: '3K+',
-    /* slate */
-    iconBg: 'bg-slate-100',
-    iconColor: 'text-slate-600',
-    cardTint: 'bg-gradient-to-br from-slate-50/80 to-white',
-    hoverTint: 'from-slate-100/90 to-slate-50/60',
-    borderHover: 'hover:border-slate-200',
-  },
-  {
-    icon: Sun,
-    label: 'Solar Solutions',
-    count: '2K+',
-    /* amber */
-    iconBg: 'bg-yellow-100',
-    iconColor: 'text-yellow-600',
-    cardTint: 'bg-gradient-to-br from-yellow-50/80 to-white',
-    hoverTint: 'from-yellow-100/90 to-yellow-50/60',
-    borderHover: 'hover:border-yellow-200',
-  },
-  {
-    icon: Cog,
-    label: 'Auto Parts',
-    count: '4K+',
-    /* slate-blue */
-    iconBg: 'bg-sky-100',
-    iconColor: 'text-sky-700',
-    cardTint: 'bg-gradient-to-br from-sky-50/80 to-white',
-    hoverTint: 'from-sky-100/90 to-sky-50/60',
-    borderHover: 'hover:border-sky-200',
-  },
-  {
-    icon: Sparkles,
-    label: 'Beauty Products',
-    count: '5K+',
-    /* pink */
-    iconBg: 'bg-pink-100',
-    iconColor: 'text-pink-600',
-    cardTint: 'bg-gradient-to-br from-pink-50/80 to-white',
-    hoverTint: 'from-pink-100/90 to-pink-50/60',
-    borderHover: 'hover:border-pink-200',
-  },
-  {
-    icon: Gamepad2,
-    label: 'Gaming',
-    count: '2K+',
-    /* violet */
-    iconBg: 'bg-violet-100',
-    iconColor: 'text-violet-600',
-    cardTint: 'bg-gradient-to-br from-violet-50/80 to-white',
-    hoverTint: 'from-violet-100/90 to-violet-50/60',
-    borderHover: 'hover:border-violet-200',
-  },
-  {
-    icon: Briefcase,
-    label: 'Office Supplies',
-    count: '3K+',
-    /* teal */
-    iconBg: 'bg-teal-100',
-    iconColor: 'text-teal-700',
-    cardTint: 'bg-gradient-to-br from-teal-50/80 to-white',
-    hoverTint: 'from-teal-100/90 to-teal-50/60',
-    borderHover: 'hover:border-teal-200',
-  },
+/* Each category shows a curated photo with a dark overlay + label. Swap any
+   `img` for your own photo in /public later. If an image fails to load, the
+   icon/colour fallback shows so it never looks broken. */
+type Category = {
+  icon: LucideIcon
+  label: string
+  count: string
+  img: string
+  fallback: string
+}
+
+const categories: Category[] = [
+  { icon: Smartphone, label: 'Electronics', count: '12K+', img: stockImages.cat_electronics, fallback: 'from-blue-500 to-blue-700' },
+  { icon: Shirt, label: 'Fashion', count: '8K+', img: stockImages.cat_fashion, fallback: 'from-orange-500 to-rose-600' },
+  { icon: Home, label: 'Home & Living', count: '6K+', img: stockImages.cat_home, fallback: 'from-amber-500 to-orange-700' },
+  { icon: Factory, label: 'Industrial Equipment', count: '3K+', img: stockImages.cat_industrial, fallback: 'from-slate-500 to-slate-700' },
+  { icon: Sun, label: 'Solar Solutions', count: '2K+', img: stockImages.cat_solar, fallback: 'from-yellow-500 to-amber-600' },
+  { icon: Cog, label: 'Auto Parts', count: '4K+', img: stockImages.cat_auto, fallback: 'from-sky-500 to-sky-700' },
+  { icon: Sparkles, label: 'Beauty Products', count: '5K+', img: stockImages.cat_beauty, fallback: 'from-pink-500 to-fuchsia-600' },
+  { icon: Gamepad2, label: 'Gaming', count: '2K+', img: stockImages.cat_gaming, fallback: 'from-violet-500 to-purple-700' },
+  { icon: Briefcase, label: 'Office Supplies', count: '3K+', img: stockImages.cat_office, fallback: 'from-teal-500 to-teal-700' },
 ]
+
+function CategoryCard({ cat, index, onNavigate }: { cat: Category; index: number; onNavigate: (v: string) => void }) {
+  const [failed, setFailed] = useState(false)
+
+  return (
+    <motion.button
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      onClick={() => onNavigate('shop')}
+      className="group relative overflow-hidden rounded-2xl aspect-[4/5] text-left shadow-sm hover:shadow-xl transition-shadow duration-300"
+    >
+      {/* Photo (or colour fallback) */}
+      {!failed ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={cat.img}
+          alt={cat.label}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <div className={`absolute inset-0 bg-gradient-to-br ${cat.fallback}`} />
+      )}
+
+      {/* Unifying dark gradient overlay for legibility + cohesion */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/0 group-hover:from-black/85 transition-colors duration-300" />
+
+      {/* Hover cue */}
+      <div className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <ArrowUpRight className="w-4 h-4 text-white" />
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full flex flex-col justify-end p-5">
+        <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-3 group-hover:bg-[#0D9488] transition-colors duration-300">
+          <cat.icon className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-base font-bold text-white leading-tight">{cat.label}</h3>
+        <p className="text-sm text-white/75">{cat.count} products</p>
+      </div>
+    </motion.button>
+  )
+}
 
 export default function CategoriesSection({ onNavigate }: CategoriesSectionProps) {
   return (
@@ -127,37 +96,13 @@ export default function CategoriesSection({ onNavigate }: CategoriesSectionProps
             Browse Categories
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            From electronics to industrial equipment — find everything you need from verified Chinese suppliers
+            Everything from electronics to industrial equipment — sourced from verified Chinese suppliers
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
           {categories.map((cat, index) => (
-            <motion.button
-              key={cat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              onClick={() => onNavigate('shop')}
-              className={`group relative overflow-hidden rounded-2xl p-6 lg:p-8 text-left border border-gray-100 ${cat.borderHover} hover:shadow-[0_12px_36px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 ${cat.cardTint}`}
-            >
-              {/* Deepened tint on hover overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${cat.hoverTint} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-              {/* "Open" cue — confirms the whole card is a clickable link */}
-              <ArrowUpRight className={`absolute top-4 right-4 w-5 h-5 ${cat.iconColor} opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300`} />
-
-              <div className="relative">
-                <div className={`w-12 h-12 rounded-xl ${cat.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <cat.icon className={`w-6 h-6 ${cat.iconColor}`} />
-                </div>
-                <h3 className="text-base font-semibold text-gray-900 mb-1">
-                  {cat.label}
-                </h3>
-                <p className="text-sm font-medium text-gray-500">{cat.count} products</p>
-              </div>
-            </motion.button>
+            <CategoryCard key={cat.label} cat={cat} index={index} onNavigate={onNavigate} />
           ))}
         </div>
 

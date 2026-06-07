@@ -1,192 +1,43 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Truck, Shield, Clock, Globe, Package, CreditCard, FileText } from 'lucide-react'
+import { ArrowRight, FileText, Shield, Clock, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface HeroSectionProps {
   onNavigate: (view: string) => void
 }
 
-/* Floating status cards shown on the right side of the hero.
-   Ordered top-to-bottom to mirror the real customer journey:
-   Quote → Cost Breakdown → Payment → Shipment tracking. */
-const statusCards = [
-  {
-    icon: Package,
-    title: 'Quote Ready',
-    status: '50x Office Chairs',
-    detail: 'P 58,600 total',
-    progress: 0,
-    color: 'from-[#10B981] to-[#34D399]',
-    badge: 'bg-emerald-500/20 text-[#10B981]',
-  },
-  {
-    icon: CreditCard,
-    title: 'Payment Confirmed',
-    status: 'P 12,450.00',
-    detail: 'Import fees included',
-    progress: 100,
-    color: 'from-[#F59E0B] to-[#FBBF24]',
-    badge: 'bg-amber-500/20 text-[#FBBF24]',
-  },
-  {
-    icon: Truck,
-    title: 'Shipment #CN-2847',
-    status: 'In Transit',
-    detail: '68% complete',
-    progress: 68,
-    color: 'from-[#0D9488] to-[#14B8A6]',
-    badge: 'bg-teal-500/20 text-[#14B8A6]',
-  },
-]
+/* Clean, magazine-style hero product (license-free Unsplash).
+   Swap this URL for your own image any time. */
+const HERO_PRODUCT = 'https://images.unsplash.com/photo-1590739169125-a9438401596a?w=1000&q=80&auto=format&fit=crop'
 
-/* Quote breakdown mini-card */
-const breakdown = [
-  { label: 'Product', value: 'P 48,500' },
-  { label: 'Shipping', value: 'P 6,200' },
-  { label: 'Import Fees', value: 'P 3,900' },
-  { label: 'Est. Arrival', value: '12 days' },
+const trust = [
+  { icon: Shield, label: 'Secure Payments' },
+  { icon: Clock, label: 'Real-time Tracking' },
+  { icon: Globe, label: 'Global Sourcing' },
 ]
-
-/* Single status card — extracted so the pipeline can be ordered explicitly
-   (Quote → Cost Breakdown → Payment → Shipment) with the breakdown slotted in. */
-function StatusCard({ card, pos }: { card: (typeof statusCards)[number]; pos: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.6 + pos * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="glass rounded-2xl p-5 hover:bg-white/12 transition-all duration-300 group"
-    >
-      <div className="flex items-center gap-4 mb-3">
-        <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
-          <card.icon className="w-5 h-5 text-white" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-white/90 truncate">{card.title}</p>
-          <p className="text-xs text-white/70">{card.status}</p>
-        </div>
-        {card.progress > 0 && card.progress < 100 && (
-          <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${card.badge}`}>
-            {card.detail}
-          </span>
-        )}
-        {card.progress === 100 && (
-          <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${card.badge}`}>
-            Confirmed
-          </span>
-        )}
-        {card.progress === 0 && (
-          <span className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${card.badge}`}>
-            Pending
-          </span>
-        )}
-      </div>
-      {/* Progress bar */}
-      {card.progress > 0 && (
-        <div className="w-full bg-white/10 rounded-full h-1.5">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${card.progress}%` }}
-            transition={{ duration: 1.5, delay: 1 + pos * 0.2, ease: 'easeOut' }}
-            className={`bg-gradient-to-r ${card.color} h-1.5 rounded-full`}
-          />
-        </div>
-      )}
-    </motion.div>
-  )
-}
 
 export default function HeroSection({ onNavigate }: HeroSectionProps) {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden animated-gradient">
-      {/* ===== Animated Background ===== */}
-      <div className="absolute inset-0">
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0E17]">
+      {/* Mobile: the product fills the background with a dark overlay for legibility */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={HERO_PRODUCT} alt="" aria-hidden="true" className="lg:hidden absolute inset-0 w-full h-full object-cover" />
+      <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-[#0A0E17]/88 via-[#0A0E17]/70 to-[#0A0E17]/92" />
 
-        {/* Ambient glow orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#0D9488]/20 rounded-full blur-[120px] pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#F59E0B]/10 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-[#0D9488]/15 rounded-full blur-[80px]" />
+      {/* Two soft glows for depth — clean, not busy */}
+      <div className="absolute top-1/4 -left-32 w-[28rem] h-[28rem] bg-[#0D9488]/15 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[24rem] h-[24rem] bg-[#F59E0B]/[0.07] rounded-full blur-[150px] pointer-events-none" />
 
-        {/* Dotted route line connecting China → Botswana */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-20"
-          viewBox="0 0 1440 900"
-          fill="none"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {/* Dotted route arc */}
-          <path
-            d="M 180 620 C 400 300, 800 200, 1260 340"
-            stroke="rgba(13,148,136,0.6)"
-            strokeWidth="2"
-            strokeDasharray="8 6"
-            className="route-line"
-          />
-          {/* Faint second path for depth */}
-          <path
-            d="M 200 640 C 420 320, 820 220, 1240 360"
-            stroke="rgba(20,184,166,0.3)"
-            strokeWidth="1.5"
-            strokeDasharray="4 8"
-            className="route-line"
-          />
-
-          {/* China location point (Shenzhen) */}
-          <circle cx="180" cy="620" r="8" fill="#0D9488" opacity="0.8" />
-          <circle cx="180" cy="620" r="16" fill="#0D9488" opacity="0.15" className="dot-pulse" />
-          <circle cx="180" cy="620" r="24" fill="#0D9488" opacity="0.07" className="dot-pulse" style={{ animationDelay: '0.5s' }} />
-
-          {/* Botswana location point (Gaborone) */}
-          <circle cx="1260" cy="340" r="8" fill="#F59E0B" opacity="0.8" />
-          <circle cx="1260" cy="340" r="16" fill="#F59E0B" opacity="0.15" className="dot-pulse" style={{ animationDelay: '1s' }} />
-          <circle cx="1260" cy="340" r="24" fill="#F59E0B" opacity="0.07" className="dot-pulse" style={{ animationDelay: '1.5s' }} />
-
-          {/* Midpoint glow */}
-          <circle cx="700" cy="380" r="6" fill="#14B8A6" opacity="0.5" className="dot-pulse" style={{ animationDelay: '0.75s' }} />
-        </svg>
-
-        {/* City labels — kept on their own (undimmed) layer with a soft dark halo
-            so they stay legible over the gradient and behind the cards. */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          viewBox="0 0 1440 900"
-          fill="none"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <text
-            x="180" y="662" textAnchor="middle"
-            fill="rgba(255,255,255,0.75)" stroke="rgba(2,6,23,0.45)" strokeWidth="3"
-            paintOrder="stroke" fontSize="13" fontWeight="700" letterSpacing="0.5"
-          >
-            Shenzhen
-          </text>
-          <text
-            x="1260" y="318" textAnchor="middle"
-            fill="rgba(255,255,255,0.75)" stroke="rgba(2,6,23,0.45)" strokeWidth="3"
-            paintOrder="stroke" fontSize="13" fontWeight="700" letterSpacing="0.5"
-          >
-            Gaborone
-          </text>
-        </svg>
-      </div>
-
-      {/* ===== Content: Left-aligned with right visual ===== */}
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT: Headline + CTAs */}
+          {/* LEFT: copy */}
           <div>
-            {/* Badge pill */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-8">
                 <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
@@ -194,33 +45,30 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
               </div>
             </motion.div>
 
-            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
             >
-              <span className="text-white">Import Anything</span>
+              <span className="text-white">Shop Anything</span>
               <br />
-              <span className="gradient-text">From China</span>
+              <span className="bg-gradient-to-r from-[#2DD4BF] to-[#FCD34D] bg-clip-text text-transparent">From China</span>
             </motion.h1>
 
-            {/* Subheadline */}
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-lg sm:text-xl text-white/60 max-w-xl leading-relaxed mb-10"
             >
-              Shop products, request quotes, pay securely, and track every shipment from China to Botswana. One account. Complete control.
+              Browse thousands of products, pay securely, and track every order from China to your door in Botswana.
             </motion.p>
 
-            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row gap-4 items-start"
             >
               <Button
@@ -242,18 +90,13 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
               </Button>
             </motion.div>
 
-            {/* Trust indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex flex-wrap gap-6 pt-8"
+              className="flex flex-wrap gap-x-6 gap-y-3 pt-8"
             >
-              {[
-                { icon: Shield, label: 'Secure Payments' },
-                { icon: Clock, label: 'Real-time Tracking' },
-                { icon: Globe, label: 'Global Sourcing' },
-              ].map((item) => (
+              {trust.map((item) => (
                 <div key={item.label} className="flex items-center gap-2 text-white/70">
                   <item.icon className="w-4 h-4" />
                   <span className="text-sm font-medium">{item.label}</span>
@@ -262,58 +105,32 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
             </motion.div>
           </div>
 
-          {/* RIGHT: Floating status cards with breakdown */}
+          {/* RIGHT: one clean, glossy product image (desktop only — on mobile it's the background) */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block relative"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="relative hidden lg:block w-full"
           >
-            <div className="space-y-4">
-              {/* Step 1 — Quote approved */}
-              <StatusCard card={statusCards[0]} pos={0} />
-
-              {/* Step 2 — Cost Breakdown for that quote */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                className="glass rounded-2xl p-5"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#0D9488]/20 flex items-center justify-center">
-                    <Package className="w-4 h-4 text-[#14B8A6]" />
-                  </div>
-                  <p className="text-sm font-semibold text-white/90">Cost Breakdown</p>
-                </div>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-                  {breakdown.map((row) => (
-                    <div key={row.label} className="flex items-center justify-between">
-                      <span className="text-xs text-white/60">{row.label}</span>
-                      <span className="text-xs font-medium text-white/85">{row.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Step 3 — Payment, Step 4 — Shipment */}
-              {statusCards.slice(1).map((card, i) => (
-                <StatusCard key={card.title} card={card} pos={i + 2} />
-              ))}
+            {/* Soft glow behind the frame for a premium, glossy feel */}
+            <div className="absolute -inset-6 bg-gradient-to-br from-[#0D9488]/25 to-[#F59E0B]/10 rounded-[2.5rem] blur-3xl" />
+            <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/50">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={HERO_PRODUCT}
+                alt="Featured product"
+                className="w-full aspect-[4/5] object-cover"
+              />
+              {/* Glossy sheen + subtle bottom shade */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
             </div>
-
-            {/* Decorative floating dots behind cards */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-[#0D9488]/10 rounded-full blur-[60px] pointer-events-none" />
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[#F59E0B]/10 rounded-full blur-[50px] pointer-events-none" />
           </motion.div>
         </div>
       </div>
 
-      {/* Bottom gradient fade — taller and tinted to the search section's
-          background so the dark-to-light handoff feels gradual, not abrupt. */}
-      <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#F4F6F4] via-[#F4F6F4]/60 to-transparent" />
-      {/* Slim brand-tinted divider line at the very bottom for a crisp seam */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0D9488]/20 to-transparent" />
+      {/* Clean fade into the next (light) section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#F4F6F4] to-transparent pointer-events-none" />
     </section>
   )
 }

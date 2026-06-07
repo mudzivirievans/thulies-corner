@@ -12,22 +12,22 @@ const values = [
   {
     icon: Shield,
     title: 'Trust',
-    description: 'We build trust through transparency. Every cost, every milestone, every detail is visible to our customers. No hidden fees, no surprises — just honest, reliable service.',
+    description: 'Every cost and milestone visible — no hidden fees, no surprises.',
   },
   {
     icon: Globe,
     title: 'Global Access',
-    description: 'We believe every African business and consumer deserves access to the world\'s largest manufacturing market. Our platform removes the barriers between China and Botswana.',
+    description: 'Direct access to the world\'s largest manufacturing market — China to Botswana.',
   },
   {
     icon: TrendingUp,
     title: 'Simplicity',
-    description: 'Importing from China has traditionally been complex and opaque. We make it simple. From sourcing to delivery, every step is designed to feel effortless.',
+    description: 'From sourcing to delivery, every step designed to feel effortless.',
   },
   {
     icon: Heart,
     title: 'Customer First',
-    description: 'Every feature, every interaction, every decision is made with our customers in mind. We exist to make importing easier, faster, and more reliable for Botswana.',
+    description: 'Every decision made to make importing easier and more reliable for Botswana.',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
               <span className="bg-gradient-to-r from-[#2DD4BF] to-[#FCD34D] bg-clip-text text-transparent">Infrastructure</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              Thulie's Corner was founded to solve a simple problem: importing from China should be as easy as shopping online. Founded by a Motswana who moved to China, we bridge the gap between Chinese suppliers and customers back home in Botswana.
+              Importing from China should be as easy as shopping online. Founded by a Motswana based in China, we bridge the gap to Botswana.
             </p>
           </motion.div>
         </div>
@@ -70,7 +70,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
             <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              To democratize access to global trade for Africa. We believe that every business and consumer in Botswana deserves a seamless, transparent, and trustworthy way to import products from China. Our platform eliminates the complexity, risk, and opacity that has traditionally made importing difficult.
+              To democratize global trade for Africa — a seamless, transparent, trustworthy way for Botswana to import from China, without the complexity or risk.
             </p>
           </div>
 
