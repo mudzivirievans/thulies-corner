@@ -14,11 +14,12 @@ interface NavigationProps {
   onNavigate: (view: ViewType) => void
 }
 
+/* Tracking lives in the top-right utility bar (and mobile menu), so it is
+   intentionally omitted here to avoid three competing entry points. */
 const navLinks: { label: string; view: ViewType }[] = [
   { label: 'Home', view: 'home' },
   { label: 'Shop', view: 'shop' },
   { label: 'Services', view: 'services' },
-  { label: 'Track Shipment', view: 'track' },
   { label: 'Pricing', view: 'pricing' },
   { label: 'About', view: 'about' },
   { label: 'Contact', view: 'contact' },
@@ -126,10 +127,16 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 <User className="w-4 h-4 mr-1.5" />
                 Account
               </Button>
+              {/* Secondary (outline) so it doesn't compete with the hero's primary CTA */}
               <Button
+                variant="outline"
                 onClick={() => handleNav('login')}
                 size="sm"
-                className="bg-[#0D9488] hover:bg-[#0F766E] text-white shadow-lg shadow-teal-500/20 rounded-lg"
+                className={`rounded-lg ${
+                  useDarkText
+                    ? 'border-[#0D9488] text-[#0D9488] hover:bg-teal-50 hover:text-[#0F766E]'
+                    : 'border-white/40 text-white bg-white/5 hover:bg-white/15 hover:border-white/60'
+                }`}
               >
                 Get Started
               </Button>

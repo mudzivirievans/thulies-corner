@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  /* config options here */
+  /* Pin the workspace root so Turbopack doesn't mis-infer it from a parent folder */
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

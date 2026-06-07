@@ -1,9 +1,16 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Shield, Heart, Eye, CheckCircle } from 'lucide-react'
 
+/* Drop the owner's photo in /public as "thulie.jpg" (or .png/.webp — update OWNER_PHOTO)
+   and it appears automatically. Until then, the "T" placeholder is shown. */
+const OWNER_PHOTO = '/thulie.jpg'
+
 export default function MeetThulieSection() {
+  const [photoFailed, setPhotoFailed] = useState(false)
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,14 +29,23 @@ export default function MeetThulieSection() {
 
               {/* Photo slot */}
               <div className="relative aspect-[4/5] rounded-3xl bg-gradient-to-br from-teal-50 to-amber-50 border border-gray-100 overflow-hidden flex items-center justify-center">
-                {/* Placeholder until real photo is provided */}
-                <div className="text-center p-8">
-                  <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#0D9488]/20 to-[#0D9488]/10 mx-auto mb-5 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-[#0D9488]">T</span>
+                {!photoFailed ? (
+                  /* Real photo — drop it in /public as thulie.jpg */
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={OWNER_PHOTO}
+                    alt="Thulie, founder of Thulie's Corner"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    onError={() => setPhotoFailed(true)}
+                  />
+                ) : (
+                  /* Placeholder until real photo is provided */
+                  <div className="text-center p-8">
+                    <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#0D9488]/20 to-[#0D9488]/10 mx-auto flex items-center justify-center">
+                      <span className="text-4xl font-bold text-[#0D9488]">T</span>
+                    </div>
                   </div>
-                  <p className="text-sm text-[#0D9488]/60 font-medium">Photo placeholder</p>
-                  <p className="text-xs text-gray-400 mt-1">Replace with Thulie&apos;s real photo</p>
-                </div>
+                )}
               </div>
 
               {/* Floating trust badge */}
