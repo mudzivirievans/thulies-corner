@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 import {
-  Smartphone, Shirt, Home, Factory, Sun, Car, Sparkles, Gamepad2, Briefcase
+  Smartphone, Shirt, Home, Factory, Sun, Cog, Sparkles, Gamepad2, Briefcase,
+  ArrowUpRight, ArrowRight
 } from 'lucide-react'
 
 interface CategoriesSectionProps {
@@ -66,7 +67,7 @@ const categories = [
     borderHover: 'hover:border-yellow-200',
   },
   {
-    icon: Car,
+    icon: Cog,
     label: 'Auto Parts',
     count: '4K+',
     /* slate-blue */
@@ -144,6 +145,9 @@ export default function CategoriesSection({ onNavigate }: CategoriesSectionProps
               {/* Deepened tint on hover overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${cat.hoverTint} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
+              {/* "Open" cue — confirms the whole card is a clickable link */}
+              <ArrowUpRight className={`absolute top-4 right-4 w-5 h-5 ${cat.iconColor} opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300`} />
+
               <div className="relative">
                 <div className={`w-12 h-12 rounded-xl ${cat.iconBg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <cat.icon className={`w-6 h-6 ${cat.iconColor}`} />
@@ -151,11 +155,28 @@ export default function CategoriesSection({ onNavigate }: CategoriesSectionProps
                 <h3 className="text-base font-semibold text-gray-900 mb-1">
                   {cat.label}
                 </h3>
-                <p className="text-sm text-gray-400">{cat.count} products</p>
+                <p className="text-sm font-medium text-gray-500">{cat.count} products</p>
               </div>
             </motion.button>
           ))}
         </div>
+
+        {/* Catch-all CTA for niches not shown in the preview grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex justify-center mt-12"
+        >
+          <button
+            onClick={() => onNavigate('shop')}
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white border border-gray-200 text-gray-900 font-semibold shadow-sm hover:border-[#0D9488]/40 hover:text-[#0D9488] hover:shadow-md transition-all duration-200"
+          >
+            View All Categories
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
       </div>
     </section>
   )

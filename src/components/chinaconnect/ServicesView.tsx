@@ -72,7 +72,8 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Import Services Built for <span className="gradient-text">Africa</span>
+              Import Services Built for{' '}
+              <span className="bg-gradient-to-r from-[#2DD4BF] to-[#FCD34D] bg-clip-text text-transparent">Africa</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8">
               From sourcing to delivery, Thulie's Corner handles every step of the import process so you can focus on growing your business.
@@ -125,15 +126,27 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
       <section className="py-24 bg-[#F8FAFC]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start Importing?</h2>
-          <p className="text-gray-500 text-lg mb-8">Create your free account and start shopping from China today.</p>
-          <Button
-            onClick={() => onNavigate('shop')}
-            size="lg"
-            className="bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl shadow-xl shadow-teal-500/20"
-          >
-            Start Shopping
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          <p className="text-gray-500 text-lg mb-8 max-w-2xl mx-auto">
+            Tell us what you need — our team handles sourcing, payment, shipping, and compliance from end to end.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => onNavigate('contact')}
+              size="lg"
+              className="bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl shadow-lg shadow-teal-500/15"
+            >
+              Contact an Agent
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+            <Button
+              onClick={() => onNavigate('shop')}
+              variant="outline"
+              size="lg"
+              className="rounded-xl border-gray-300 text-gray-900 hover:bg-white hover:border-gray-400"
+            >
+              Browse Products
+            </Button>
+          </div>
         </div>
       </section>
     </div>

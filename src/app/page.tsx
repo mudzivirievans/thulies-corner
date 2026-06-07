@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Smartphone, Briefcase, Sun } from 'lucide-react'
 import Navigation, { ViewType } from '@/components/chinaconnect/Navigation'
 import HeroSection from '@/components/chinaconnect/HeroSection'
 import SearchSection from '@/components/chinaconnect/SearchSection'
@@ -31,7 +32,7 @@ export default function Home() {
   }
 
   /* Inner pages that need extra top padding for the back bar */
-  const needsBackBar = ['product', 'dashboard', 'admin'].includes(currentView)
+  const needsBackBar = ['product'].includes(currentView)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -57,7 +58,7 @@ export default function Home() {
               <HowItWorks />
 
               {/* Testimonials */}
-              <section className="py-24 bg-white">
+              <section className="pt-24 pb-28 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-14">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Businesses Across Botswana</h2>
@@ -65,9 +66,9 @@ export default function Home() {
                   </div>
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { name: 'Thabo M.', role: 'Electronics Retailer', quote: "Thulie's Corner made importing phones and gadgets so easy. I used to spend weeks dealing with suppliers. Now it takes minutes.", rating: 5 },
-                      { name: 'Mma T.', role: 'Office Manager', quote: "We furnish our entire office through Thulie's Corner. The transparent pricing and real-time tracking give me peace of mind.", rating: 5 },
-                      { name: 'David S.', role: 'Solar Installer', quote: "Sourcing solar panels from China was always complicated. Thulie's Corner handles everything — I just place the order and track the shipment.", rating: 5 },
+                      { name: 'Thabo M.', role: 'Electronics Retailer', icon: Smartphone, quote: "Thulie's Corner made importing phones and gadgets so easy. I used to spend weeks dealing with suppliers. Now it takes minutes.", rating: 5 },
+                      { name: 'Mma T.', role: 'Office Manager', icon: Briefcase, quote: "We furnish our entire office through Thulie's Corner. The transparent pricing and real-time tracking give me peace of mind.", rating: 5 },
+                      { name: 'David S.', role: 'Solar Installer', icon: Sun, quote: "Sourcing solar panels from China was always complicated. Thulie's Corner handles everything — I just place the order and track the shipment.", rating: 5 },
                     ].map((testimonial, i) => (
                       <motion.div
                         key={testimonial.name}
@@ -75,7 +76,7 @@ export default function Home() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.1 }}
-                        className="bg-[#F8FAFC] rounded-2xl p-7 border border-gray-100"
+                        className="bg-[#F8FAFC] rounded-2xl p-6 border border-gray-100 flex flex-col"
                       >
                         <div className="flex items-center gap-0.5 mb-4">
                           {Array.from({ length: testimonial.rating }).map((_, j) => (
@@ -84,14 +85,14 @@ export default function Home() {
                             </svg>
                           ))}
                         </div>
-                        <p className="text-sm text-gray-600 leading-relaxed mb-5">&ldquo;{testimonial.quote}&rdquo;</p>
+                        <p className="text-base text-gray-700 leading-relaxed mb-6 flex-1">&ldquo;{testimonial.quote}&rdquo;</p>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-[#0D9488]/10 flex items-center justify-center text-sm font-bold text-[#0D9488]">
-                            {testimonial.name.charAt(0)}
+                          <div className="w-11 h-11 rounded-full bg-[#0D9488]/10 flex items-center justify-center text-[#0D9488] flex-shrink-0">
+                            <testimonial.icon className="w-5 h-5" />
                           </div>
                           <div>
                             <p className="text-sm font-semibold text-gray-900">{testimonial.name}</p>
-                            <p className="text-xs text-gray-400">{testimonial.role}</p>
+                            <p className="text-xs text-gray-500">{testimonial.role}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -101,7 +102,7 @@ export default function Home() {
               </section>
 
               {/* CTA */}
-              <section className="py-24 bg-[#F8FAFC]">
+              <section className="pt-32 pb-28 bg-[#F8FAFC]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -113,12 +114,12 @@ export default function Home() {
                       Ready to Start Importing?
                     </h2>
                     <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
-                      Create your free account and start shopping from China today. Track every shipment, pay securely, and manage all your imports from one dashboard.
+                      Create your free account and start importing from China today. Track every shipment, pay securely, and manage all your imports from one dashboard.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <button
                         onClick={() => handleNavigate('login')}
-                        className="px-8 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl font-semibold shadow-xl shadow-teal-500/20 transition-colors"
+                        className="px-8 py-4 bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl font-semibold shadow-[0_10px_30px_-12px_rgba(15,23,42,0.18)] hover:shadow-[0_12px_34px_-12px_rgba(15,23,42,0.22)] transition-all"
                       >
                         Create Free Account
                       </button>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Globe, Users, Shield, TrendingUp, ArrowRight, MapPin, Target, Heart } from 'lucide-react'
+import { Globe, Users, Shield, TrendingUp, ArrowRight, MapPin, Target, Heart, Plane } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface AboutViewProps {
@@ -54,7 +54,8 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Building Africa&apos;s Import <span className="gradient-text">Infrastructure</span>
+              Building Africa&apos;s Import{' '}
+              <span className="bg-gradient-to-r from-[#2DD4BF] to-[#FCD34D] bg-clip-text text-transparent">Infrastructure</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
               Thulie's Corner was founded to solve a simple problem: importing from China should be as easy as shopping online. Founded by a Motswana who moved to China, we bridge the gap between Chinese suppliers and customers back home in Botswana.
@@ -122,21 +123,64 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
       {/* Location */}
       <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center mx-auto mb-6">
-            <MapPin className="w-8 h-8 text-[#0D9488]" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Text */}
+            <div>
+              <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-6">
+                <MapPin className="w-8 h-8 text-[#0D9488]" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Based in China, Serving Botswana</h2>
+              <p className="text-gray-500 text-lg mb-8">
+                Our founder moved from Botswana to China, giving us direct access to Chinese suppliers and firsthand understanding of what Botswana customers need. We are uniquely positioned to bridge the gap.
+              </p>
+              <Button
+                onClick={() => onNavigate('contact')}
+                className="bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl shadow-lg shadow-teal-500/20"
+              >
+                Get In Touch
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+
+            {/* Stylized route map — China to Botswana */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative rounded-3xl bg-gradient-to-br from-teal-50 to-amber-50 border border-gray-100 p-6 sm:p-8 overflow-hidden"
+            >
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#0D9488]/10 rounded-full blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#F59E0B]/10 rounded-full blur-3xl" />
+
+              <div className="relative aspect-[4/3]">
+                <svg viewBox="0 0 360 270" className="absolute inset-0 w-full h-full" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                  {/* Dashed shipping arc */}
+                  <path d="M295 65 C 220 35, 130 120, 65 200" stroke="#0D9488" strokeOpacity="0.55" strokeWidth="2.5" strokeDasharray="7 6" />
+                  {/* Shenzhen endpoint */}
+                  <circle cx="295" cy="65" r="22" fill="#0D9488" opacity="0.12" />
+                  <circle cx="295" cy="65" r="7" fill="#0D9488" />
+                  {/* Gaborone endpoint */}
+                  <circle cx="65" cy="200" r="22" fill="#F59E0B" opacity="0.14" />
+                  <circle cx="65" cy="200" r="7" fill="#F59E0B" />
+                </svg>
+
+                {/* Endpoint label chips */}
+                <span className="absolute top-2 right-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white shadow-sm border border-gray-100 text-xs font-semibold text-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-[#0D9488]" /> Shenzhen, China
+                </span>
+                <span className="absolute bottom-2 left-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white shadow-sm border border-gray-100 text-xs font-semibold text-gray-700">
+                  <span className="w-2 h-2 rounded-full bg-[#F59E0B]" /> Gaborone, Botswana
+                </span>
+
+                {/* Plane gliding along the route */}
+                <div className="absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center">
+                  <Plane className="w-4 h-4 text-[#0D9488] rotate-[200deg]" />
+                </div>
+              </div>
+            </motion.div>
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Based in China, Serving Botswana</h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-8">
-            Our founder moved from Botswana to China, giving us direct access to Chinese suppliers and firsthand understanding of what Botswana customers need. We are uniquely positioned to bridge the gap.
-          </p>
-          <Button
-            onClick={() => onNavigate('contact')}
-            className="bg-[#0D9488] hover:bg-[#0F766E] text-white rounded-xl shadow-lg shadow-teal-500/20"
-          >
-            Get In Touch
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
         </div>
       </section>
     </div>

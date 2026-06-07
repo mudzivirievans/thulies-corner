@@ -75,9 +75,9 @@ export default function MeetThulieSection() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-100">
-              <Heart className="w-3.5 h-3.5 text-amber-600" />
-              <span className="text-xs font-semibold text-amber-700">Meet the founder</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 border border-amber-200">
+              <Heart className="w-3.5 h-3.5 text-amber-700" />
+              <span className="text-xs font-bold tracking-wide text-amber-800 uppercase">Meet the founder</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
@@ -85,24 +85,31 @@ export default function MeetThulieSection() {
             </h2>
 
             <p className="text-gray-600 leading-relaxed">
-              Thulie is a Motswana who made the move to China — and she did it so you don&apos;t have to. Living right where the world&apos;s products are made, she personally sources, inspects, and ships every order so her clients back home in Botswana never have to worry about quality, authenticity, or getting scammed.
+              Thulie is a Motswana who made the move to China — and she did it so you don&apos;t have to. Living right where the world&apos;s products are made, she <strong className="font-semibold text-gray-900">personally sources, inspects, and ships every order</strong> so her clients back home in Botswana <strong className="font-semibold text-gray-900">never have to worry about quality, authenticity, or getting scammed.</strong>
             </p>
 
             <p className="text-gray-600 leading-relaxed">
-              When you order through Thulie&apos;s Corner, you&apos;re not dealing with a faceless website halfway across the world. You&apos;re working with someone who understands Botswana, who knows what you need, and who is physically there to make sure it arrives exactly as expected.
+              When you order through Thulie&apos;s Corner, you&apos;re <strong className="font-semibold text-gray-900">not dealing with a faceless website</strong> halfway across the world. You&apos;re working with someone who understands Botswana, who knows what you need, and who is <strong className="font-semibold text-gray-900">physically there</strong> to make sure it arrives exactly as expected.
             </p>
 
             {/* Quote */}
-            <blockquote className="relative pl-5 border-l-3 border-[#0D9488] py-1">
-              <p className="text-lg font-medium text-gray-800 italic leading-relaxed">
-                &ldquo;I moved to China so my people back home don&apos;t have to worry about getting scammed. I check everything myself — if it&apos;s not good enough for my own family, it doesn&apos;t ship.&rdquo;
+            <blockquote className="relative pl-6 pt-4 border-l-[3px] border-[#0D9488]">
+              {/* Large decorative quotation mark — cues "someone is speaking" */}
+              <span
+                aria-hidden="true"
+                className="absolute -top-3 left-3 text-7xl leading-none font-serif text-[#0D9488]/15 select-none pointer-events-none"
+              >
+                &ldquo;
+              </span>
+              <p className="relative text-lg font-medium text-gray-800 italic leading-relaxed">
+                I moved to China so my people back home don&apos;t have to worry about getting scammed. I check everything myself — if it&apos;s not good enough for my own family, it doesn&apos;t ship.
               </p>
               <cite className="block mt-2 text-sm font-semibold text-[#0D9488] not-italic">
                 — Thulie, Founder
               </cite>
             </blockquote>
 
-            {/* Quick trust points */}
+            {/* Quick trust points — grounded in equal-sized tinted pills */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               {[
                 { icon: Shield, text: 'Personally inspects every order' },
@@ -110,9 +117,14 @@ export default function MeetThulieSection() {
                 { icon: Heart, text: 'Motswana-owned & operated' },
                 { icon: CheckCircle, text: 'Based in China — direct access' },
               ].map((point) => (
-                <div key={point.text} className="flex items-center gap-2.5">
-                  <point.icon className="w-4 h-4 text-[#0D9488] flex-shrink-0" />
-                  <span className="text-sm text-gray-600">{point.text}</span>
+                <div
+                  key={point.text}
+                  className="flex items-center gap-3 p-3 rounded-xl bg-[#0D9488]/[0.04] border border-[#0D9488]/10 hover:bg-[#0D9488]/[0.07] transition-colors"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-teal-50 flex items-center justify-center flex-shrink-0">
+                    <point.icon className="w-[18px] h-[18px] text-[#0D9488]" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 leading-snug">{point.text}</span>
                 </div>
               ))}
             </div>

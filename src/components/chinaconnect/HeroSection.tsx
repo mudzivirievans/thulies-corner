@@ -309,8 +309,11 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Bottom gradient fade — taller and tinted to the search section's
+          background so the dark-to-light handoff feels gradual, not abrupt. */}
+      <div className="absolute bottom-0 left-0 right-0 h-52 bg-gradient-to-t from-[#F4F6F4] via-[#F4F6F4]/60 to-transparent" />
+      {/* Slim brand-tinted divider line at the very bottom for a crisp seam */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0D9488]/20 to-transparent" />
     </section>
   )
 }

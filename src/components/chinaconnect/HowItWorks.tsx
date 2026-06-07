@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Search, Calculator, CreditCard, MapPin } from 'lucide-react'
+import { Search, Calculator, CreditCard, MapPin, ChevronRight } from 'lucide-react'
 
 const steps = [
   {
@@ -37,8 +37,9 @@ const steps = [
     title: 'Track Shipment',
     description: 'Watch your shipment move from China to Botswana in real-time with detailed milestones and delivery notifications.',
     details: ['Real-time tracking', 'Shipment milestones', 'Delivery notifications', 'Map visualization'],
-    color: 'from-[#EF4444] to-[#F87171]',
-    bgColor: 'bg-red-50',
+    /* Teal to match the tracking identity used in the hero and tracking sections */
+    color: 'from-[#0D9488] to-[#14B8A6]',
+    bgColor: 'bg-teal-50',
   },
 ]
 
@@ -71,9 +72,12 @@ export default function HowItWorks() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative"
             >
-              {/* Connection line */}
+              {/* Flow indicator — dashed line + chevron guiding the eye to the next step */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 left-[calc(50%+2rem)] right-[calc(-50%+2rem)] h-px bg-gradient-to-r from-gray-200 to-gray-100" />
+                <div className="hidden lg:flex items-center absolute top-12 left-[calc(50%+2.5rem)] right-[calc(-50%+2.5rem)] -translate-y-1/2 z-10">
+                  <div className="flex-1 border-t-2 border-dashed border-gray-300" />
+                  <ChevronRight className="w-5 h-5 text-gray-400 -ml-2 flex-shrink-0" />
+                </div>
               )}
 
               <div className="relative rounded-2xl bg-white border border-gray-100 p-6 lg:p-7 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group-hover:border-gray-200">
@@ -88,13 +92,13 @@ export default function HowItWorks() {
                 </div>
 
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">{step.description}</p>
+                <p className="text-sm text-gray-600 leading-relaxed mb-5">{step.description}</p>
 
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   {step.details.map((detail) => (
-                    <div key={detail} className="flex items-center gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${step.color}`} />
-                      <span className="text-xs text-gray-500">{detail}</span>
+                    <div key={detail} className="flex items-center gap-2.5">
+                      <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${step.color} flex-shrink-0`} />
+                      <span className="text-xs text-gray-600">{detail}</span>
                     </div>
                   ))}
                 </div>

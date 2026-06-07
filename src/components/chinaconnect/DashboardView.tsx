@@ -6,7 +6,7 @@ import {
   Package, Truck, CheckCircle, Wallet, TrendingUp,
   Clock, ArrowRight, ChevronRight, Bell, MessageCircle,
   CreditCard, ArrowUpRight, ArrowDownLeft, Eye, Star,
-  BarChart3, ShoppingBag, FileText, Settings
+  BarChart3, ShoppingBag, FileText, Settings, Home
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -24,10 +24,10 @@ const stats = [
 ]
 
 const recentOrders = [
-  { id: 'CN-2847', product: 'iPhone 17 Pro Max', status: 'In Transit', statusColor: 'bg-amber-50 text-amber-700', amount: 'P 15,600', date: 'Dec 15, 2024' },
-  { id: 'CN-2835', product: 'Office Chair x50', status: 'At Warehouse', statusColor: 'bg-blue-50 text-blue-700', amount: 'P 92,500', date: 'Dec 10, 2024' },
-  { id: 'CN-2821', product: 'Solar Panels x20', status: 'Delivered', statusColor: 'bg-green-50 text-green-700', amount: 'P 56,000', date: 'Nov 28, 2024' },
-  { id: 'CN-2810', product: 'Gaming Laptop', status: 'Quote Ready', statusColor: 'bg-purple-50 text-purple-700', amount: 'P 22,400', date: 'Dec 18, 2024' },
+  { id: 'CN-2847', product: 'iPhone 17 Pro Max', status: 'In Transit', statusColor: 'bg-amber-50 text-amber-700', amount: 'P 15,600', date: '2 days ago' },
+  { id: 'CN-2835', product: 'Office Chair x50', status: 'At Warehouse', statusColor: 'bg-blue-50 text-blue-700', amount: 'P 92,500', date: '5 days ago' },
+  { id: 'CN-2821', product: 'Solar Panels x20', status: 'Delivered', statusColor: 'bg-green-50 text-green-700', amount: 'P 56,000', date: '3 weeks ago' },
+  { id: 'CN-2810', product: 'Gaming Laptop', status: 'Quote Ready', statusColor: 'bg-purple-50 text-purple-700', amount: 'P 22,400', date: 'Yesterday' },
 ]
 
 const notifications = [
@@ -76,6 +76,15 @@ export default function DashboardView({ onNavigate }: DashboardViewProps) {
                   {tab.label}
                 </button>
               ))}
+
+              {/* Return to the public marketing site */}
+              <button
+                onClick={() => onNavigate('home')}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-all whitespace-nowrap lg:mt-1 lg:border-t lg:border-gray-100 lg:rounded-t-none"
+              >
+                <Home className="w-4 h-4" />
+                Return to Website
+              </button>
             </div>
           </div>
 
@@ -225,9 +234,9 @@ function OrdersTab() {
 
 function ShipmentsTab({ onNavigate }: { onNavigate: (view: ViewType) => void }) {
   const shipments = [
-    { id: 'CN-2847', product: 'iPhone 17 Pro Max', stage: 4, totalStages: 7, eta: 'Dec 28, 2024' },
-    { id: 'CN-2835', product: 'Office Chair x50', stage: 2, totalStages: 7, eta: 'Jan 15, 2025' },
-    { id: 'CN-2840', product: 'LED Monitors x10', stage: 5, totalStages: 7, eta: 'Dec 22, 2024' },
+    { id: 'CN-2847', product: 'iPhone 17 Pro Max', stage: 4, totalStages: 7, eta: 'Jun 20, 2026' },
+    { id: 'CN-2835', product: 'Office Chair x50', stage: 2, totalStages: 7, eta: 'Jul 02, 2026' },
+    { id: 'CN-2840', product: 'LED Monitors x10', stage: 5, totalStages: 7, eta: 'Jun 16, 2026' },
   ]
 
   return (
@@ -258,10 +267,10 @@ function ShipmentsTab({ onNavigate }: { onNavigate: (view: ViewType) => void }) 
 
 function WalletTab() {
   const transactions = [
-    { type: 'deposit', description: 'Bank Transfer Deposit', amount: '+P 20,000', date: 'Dec 15, 2024', icon: ArrowDownLeft, color: 'text-green-600' },
-    { type: 'payment', description: 'Order CN-2847 - iPhone 17', amount: '-P 15,600', date: 'Dec 15, 2024', icon: ArrowUpRight, color: 'text-red-500' },
-    { type: 'deposit', description: 'Orange Money Deposit', amount: '+P 5,000', date: 'Dec 12, 2024', icon: ArrowDownLeft, color: 'text-green-600' },
-    { type: 'refund', description: 'Refund - Order CN-2802', amount: '+P 2,400', date: 'Dec 10, 2024', icon: ArrowDownLeft, color: 'text-green-600' },
+    { type: 'deposit', description: 'Bank Transfer Deposit', amount: '+P 20,000', date: '3 days ago', icon: ArrowDownLeft, color: 'text-green-600' },
+    { type: 'payment', description: 'Order CN-2847 - iPhone 17', amount: '-P 15,600', date: '3 days ago', icon: ArrowUpRight, color: 'text-red-500' },
+    { type: 'deposit', description: 'Orange Money Deposit', amount: '+P 5,000', date: '1 week ago', icon: ArrowDownLeft, color: 'text-green-600' },
+    { type: 'refund', description: 'Refund - Order CN-2802', amount: '+P 2,400', date: '2 weeks ago', icon: ArrowDownLeft, color: 'text-green-600' },
   ]
 
   return (

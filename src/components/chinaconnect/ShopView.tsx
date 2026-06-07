@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   Search, SlidersHorizontal, Star, Heart, ShoppingCart,
-  ChevronDown, Grid3X3, List, ArrowRight, Eye, Sparkles, X
+  ChevronDown, Truck
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -208,8 +208,9 @@ export default function ShopView({ onNavigate }: ShopViewProps) {
                     <ShoppingCart className="w-4 h-4 text-[#0D9488] group-hover:text-white transition-colors" />
                   </button>
                 </div>
-                <div className="mt-3 pt-3 border-t border-gray-50 flex items-center gap-1.5">
-                  <span className="text-xs text-gray-400">{product.shipping}</span>
+                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center gap-1.5 text-gray-500">
+                  <Truck className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span className="text-xs font-medium">{product.shipping}</span>
                 </div>
               </div>
             </motion.div>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Package, ArrowRight, Eye, EyeOff } from 'lucide-react'
+import { Package, ArrowRight, Eye, EyeOff, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface LoginViewProps {
@@ -27,7 +27,16 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
         transition={{ duration: 0.6 }}
         className="relative w-full max-w-md"
       >
-        <div className="bg-white rounded-3xl p-8 shadow-2xl">
+        <div className="relative bg-white rounded-3xl p-8 shadow-2xl">
+          {/* Close — clear exit for users who opened this by accident */}
+          <button
+            type="button"
+            onClick={() => onNavigate('home')}
+            aria-label="Close"
+            className="absolute top-4 right-4 w-9 h-9 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
           {/* Logo */}
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0D9488] to-[#14B8A6] flex items-center justify-center shadow-lg shadow-teal-500/20">
@@ -86,9 +95,9 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-gray-300" />
-                  <span className="text-sm text-gray-500">Remember me</span>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" className="w-4 h-4 rounded border-gray-300 accent-[#0D9488]" />
+                  <span className="text-sm text-gray-600 leading-none">Remember me</span>
                 </label>
                 <button type="button" className="text-sm text-[#0D9488] font-medium">Forgot password?</button>
               </div>
@@ -154,7 +163,7 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
             </form>
           )}
 
-          <p className="text-xs text-gray-400 text-center mt-6">
+          <p className="text-xs text-gray-500 text-center mt-6">
             By continuing, you agree to Thulie's Corner&apos;s Terms of Service and Privacy Policy.
           </p>
         </div>

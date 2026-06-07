@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Menu, X, ArrowLeft, User, Package, Truck
+  Menu, X, ArrowLeft, User, Package, Truck, LogOut
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -29,7 +29,11 @@ const navLinks: { label: string; view: ViewType }[] = [
 const darkHeroViews: ViewType[] = ['home']
 
 /* Inner detail pages that show a back arrow */
-const innerPages: ViewType[] = ['product', 'dashboard', 'admin']
+const innerPages: ViewType[] = ['product']
+
+/* Logged-in app screens — these use the simplified app header (no marketing
+   links, no "Get Started"), since the user is already inside their account. */
+const appViews: ViewType[] = ['dashboard', 'admin']
 
 export default function Navigation({ currentView, onNavigate }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false)
@@ -43,6 +47,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
    */
   const isDarkHero = darkHeroViews.includes(currentView) && !scrolled
   const isInner = innerPages.includes(currentView)
+  const isApp = appViews.includes(currentView)
   const useDarkText = !isDarkHero
 
   useEffect(() => {
@@ -86,71 +91,94 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
               </span>
             </button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
+            {/* Desktop Navigation — marketing links hidden inside the app */}
+            {!isApp && (
+              <div className="hidden lg:flex items-center gap-1">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.view}
+                    onClick={() => handleNav(link.view)}
+                    className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                      currentView === link.view
+                        ? useDarkText
+                          ? 'text-[#0D9488] bg-teal-50'
+                          : 'text-white bg-white/10'
+                        : useDarkText
+                          ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                          : 'text-white/70 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {!isApp ? (
+              <>
+                {/* Right side actions (marketing) */}
+                <div className="hidden lg:flex items-center gap-3">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleNav('track')}
+                    className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
+                  >
+                    <Truck className="w-4 h-4 mr-1.5" />
+                    Track
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleNav('dashboard')}
+                    className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
+                  >
+                    <User className="w-4 h-4 mr-1.5" />
+                    Account
+                  </Button>
+                  {/* Secondary (outline) so it doesn't compete with the hero's primary CTA */}
+                  <Button
+                    variant="outline"
+                    onClick={() => handleNav('login')}
+                    size="sm"
+                    className={`rounded-lg ${
+                      useDarkText
+                        ? 'border-[#0D9488] text-[#0D9488] hover:bg-teal-50 hover:text-[#0F766E]'
+                        : 'border-white/40 text-white bg-white/5 hover:bg-white/15 hover:border-white/60'
+                    }`}
+                  >
+                    Get Started
+                  </Button>
+                </div>
+
+                {/* Mobile menu button */}
                 <button
-                  key={link.view}
-                  onClick={() => handleNav(link.view)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    currentView === link.view
-                      ? useDarkText
-                        ? 'text-[#0D9488] bg-teal-50'
-                        : 'text-white bg-white/10'
-                      : useDarkText
-                        ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                        : 'text-white/70 hover:text-white hover:bg-white/10'
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                  className={`lg:hidden p-2 rounded-lg ${
+                    useDarkText ? 'text-gray-600' : 'text-white'
                   }`}
                 >
-                  {link.label}
+                  {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
-              ))}
-            </div>
-
-            {/* Right side actions */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleNav('track')}
-                className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
-              >
-                <Truck className="w-4 h-4 mr-1.5" />
-                Track
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleNav('dashboard')}
-                className={useDarkText ? 'text-gray-600 hover:text-gray-900' : 'text-white/70 hover:text-white hover:bg-white/10'}
-              >
-                <User className="w-4 h-4 mr-1.5" />
-                Account
-              </Button>
-              {/* Secondary (outline) so it doesn't compete with the hero's primary CTA */}
-              <Button
-                variant="outline"
-                onClick={() => handleNav('login')}
-                size="sm"
-                className={`rounded-lg ${
-                  useDarkText
-                    ? 'border-[#0D9488] text-[#0D9488] hover:bg-teal-50 hover:text-[#0F766E]'
-                    : 'border-white/40 text-white bg-white/5 hover:bg-white/15 hover:border-white/60'
-                }`}
-              >
-                Get Started
-              </Button>
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2 rounded-lg ${
-                useDarkText ? 'text-gray-600' : 'text-white'
-              }`}
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              </>
+            ) : (
+              /* App header — user is logged in: profile + log out, no marketing nav */
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-[#0D9488]/10 flex items-center justify-center text-sm font-bold text-[#0D9488]">T</div>
+                  <span className="text-sm font-medium text-gray-700">Thabo</span>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleNav('home')}
+                  className="rounded-lg border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                >
+                  <LogOut className="w-4 h-4 mr-1.5" />
+                  Log out
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </motion.nav>

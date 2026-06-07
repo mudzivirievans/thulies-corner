@@ -26,16 +26,21 @@ const sampleShipment = {
   ],
 }
 
-/* --- Floating milestone cards (desktop only) --- */
+/* --- Milestone cards, ordered left-to-right to match the real journey:
+   Quote → Payment → Shipment. Each carries a status chip and a stage-coloured
+   bar so all three cards stay visually balanced. --- */
 const milestones = [
   {
-    icon: Truck,
-    title: 'Shipment #CN-2847',
-    sub: 'In Transit',
-    detail: '68% — Arrived at customs',
-    progress: 68,
-    color: 'bg-teal-500/20',
-    iconColor: 'text-[#14B8A6]',
+    icon: Clock,
+    title: 'Quote Ready',
+    sub: '50x Office Chairs',
+    detail: 'P 58,600 total',
+    progress: 100,
+    bar: 'from-[#10B981] to-[#34D399]',
+    color: 'bg-emerald-500/20',
+    iconColor: 'text-[#10B981]',
+    chip: 'Valid 7 days',
+    chipClass: 'bg-emerald-50 text-emerald-700',
   },
   {
     icon: Shield,
@@ -43,18 +48,32 @@ const milestones = [
     sub: 'P 12,450.00',
     detail: 'Visa / MC / Orange Money',
     progress: 100,
+    bar: 'from-[#F59E0B] to-[#FBBF24]',
     color: 'bg-amber-500/20',
-    iconColor: 'text-[#FBBF24]',
+    iconColor: 'text-[#D97706]',
+    chip: 'Confirmed',
+    chipClass: 'bg-amber-50 text-amber-700',
   },
   {
-    icon: Clock,
-    title: 'Quote Ready',
-    sub: '50x Office Chairs',
-    detail: 'P 58,600 total',
-    progress: 0,
-    color: 'bg-emerald-500/20',
-    iconColor: 'text-[#10B981]',
+    icon: Truck,
+    title: 'Shipment #CN-2847',
+    sub: 'In Transit',
+    detail: '68% — Arrived at customs',
+    progress: 68,
+    bar: 'from-[#0D9488] to-[#14B8A6]',
+    color: 'bg-teal-500/20',
+    iconColor: 'text-[#0D9488]',
+    chip: 'In transit',
+    chipClass: 'bg-teal-50 text-[#0D9488]',
   },
+]
+
+/* Column centres (3 equal cards) used to anchor the connector dots/lines down
+   to each card, colour-matched to that card's stage. */
+const connectors = [
+  { pos: 16.67, color: '#10B981' },
+  { pos: 50, color: '#D97706' },
+  { pos: 83.33, color: '#0D9488' },
 ]
 
 export default function TrackingSection() {
@@ -93,23 +112,41 @@ export default function TrackingSection() {
           {/* Desktop layout: route line with floating cards */}
           <div className="hidden lg:block relative">
             {/* Route arc */}
-            <div className="relative h-8 mb-10">
+            <div className="relative h-8 mb-12">
               <div className="absolute left-[8%] right-[8%] top-1/2 h-[2px] -translate-y-1/2">
                 <div className="w-full h-full bg-gradient-to-r from-[#0D9488] via-[#14B8A6] to-[#F59E0B] rounded-full" />
-                {/* Animated dot traveling along the line */}
+                {/* Progress dot — rests at 68%, having cleared Quote + Payment and
+                    now nearing Gaborone, with a live pulse. */}
                 <motion.div
-                  animate={{ left: ['0%', '100%'] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                  className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#0D9488] shadow-lg shadow-teal-500/40"
-                />
+                  initial={{ left: '0%' }}
+                  whileInView={{ left: '68%' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.6, ease: 'easeOut' }}
+                  className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#0D9488] shadow-lg shadow-teal-500/40"
+                >
+                  <span className="absolute inset-0 rounded-full bg-[#0D9488] animate-ping opacity-60" />
+                </motion.div>
               </div>
-              {/* Origin label */}
-              <div className="absolute left-[5%] top-7">
-                <span className="text-xs font-semibold text-[#0D9488]">Shenzhen</span>
+
+              {/* Connector dots + dashed drop-lines linking the timeline to each card */}
+              {connectors.map((c, i) => (
+                <div key={i} className="absolute top-1/2" style={{ left: `${c.pos}%` }}>
+                  <div
+                    className="absolute -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full ring-2 ring-white"
+                    style={{ backgroundColor: c.color }}
+                  />
+                  <div className="absolute left-0 -translate-x-1/2 top-0 border-l-2 border-dashed border-gray-200 h-14" />
+                </div>
+              ))}
+
+              {/* Endpoint labels — dark text for readability; colour kept on the dot only */}
+              <div className="absolute left-[4%] top-8 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#0D9488]" />
+                <span className="text-xs font-semibold text-gray-700">Shenzhen</span>
               </div>
-              {/* Destination label */}
-              <div className="absolute right-[5%] top-7">
-                <span className="text-xs font-semibold text-[#F59E0B]">Gaborone</span>
+              <div className="absolute right-[4%] top-8 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+                <span className="text-xs font-semibold text-gray-700">Gaborone</span>
               </div>
             </div>
 
@@ -125,20 +162,26 @@ export default function TrackingSection() {
                   className="rounded-2xl border border-gray-100 bg-gradient-to-br from-gray-50/60 to-white p-5 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-xl ${m.color} flex items-center justify-center`}>
+                    <div className={`w-10 h-10 rounded-xl ${m.color} flex items-center justify-center flex-shrink-0`}>
                       <m.icon className={`w-5 h-5 ${m.iconColor}`} />
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">{m.title}</p>
-                      <p className="text-xs text-gray-400">{m.sub}</p>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-900 truncate">{m.title}</p>
+                      <p className="text-xs text-gray-500">{m.sub}</p>
                     </div>
+                    <span className={`px-2 py-0.5 rounded-md text-[11px] font-semibold whitespace-nowrap ${m.chipClass}`}>{m.chip}</span>
                   </div>
-                  {m.progress > 0 && (
-                    <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
-                      <div className="bg-gradient-to-r from-[#0D9488] to-[#14B8A6] h-1.5 rounded-full" style={{ width: `${m.progress}%` }} />
-                    </div>
-                  )}
-                  <p className="text-xs text-gray-400 mt-1">{m.detail}</p>
+                  {/* Stage-coloured bar — present on every card for visual balance */}
+                  <div className="w-full bg-gray-200/70 rounded-full h-1.5 mb-2">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${m.progress}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: i * 0.12, ease: 'easeOut' }}
+                      className={`bg-gradient-to-r ${m.bar} h-1.5 rounded-full`}
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500">{m.detail}</p>
                 </motion.div>
               ))}
             </div>
@@ -148,7 +191,10 @@ export default function TrackingSection() {
           <div className="lg:hidden space-y-4">
             {/* Simplified route indicator */}
             <div className="flex items-center gap-3 px-2 mb-2">
-              <span className="text-xs font-semibold text-[#0D9488]">Shenzhen</span>
+              <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-700">
+                <span className="w-2 h-2 rounded-full bg-[#0D9488]" />
+                Shenzhen
+              </span>
               <div className="flex-1 h-[2px] bg-gradient-to-r from-[#0D9488] to-[#F59E0B] relative">
                 <motion.div
                   animate={{ left: ['0%', '95%'] }}
@@ -156,7 +202,10 @@ export default function TrackingSection() {
                   className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#0D9488] shadow-md shadow-teal-500/30"
                 />
               </div>
-              <span className="text-xs font-semibold text-[#F59E0B]">Gaborone</span>
+              <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-700">
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+                Gaborone
+              </span>
             </div>
 
             {milestones.map((m, i) => (
@@ -173,7 +222,7 @@ export default function TrackingSection() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-gray-900 truncate">{m.title}</p>
-                  <p className="text-xs text-gray-400">{m.detail}</p>
+                  <p className="text-xs text-gray-500">{m.detail}</p>
                 </div>
               </motion.div>
             ))}
