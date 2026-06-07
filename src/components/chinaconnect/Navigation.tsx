@@ -12,6 +12,7 @@ export type ViewType = 'home' | 'shop' | 'services' | 'track' | 'pricing' | 'abo
 interface NavigationProps {
   currentView: ViewType
   onNavigate: (view: ViewType) => void
+  onBack?: () => void
 }
 
 /* Tracking lives in the top-right utility bar (and mobile menu), so it is
@@ -35,7 +36,7 @@ const innerPages: ViewType[] = ['product']
    links, no "Get Started"), since the user is already inside their account. */
 const appViews: ViewType[] = ['dashboard', 'admin']
 
-export default function Navigation({ currentView, onNavigate }: NavigationProps) {
+export default function Navigation({ currentView, onNavigate, onBack }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -77,6 +78,17 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
+            {/* Left: optional mobile back arrow + logo */}
+            <div className="flex items-center gap-1">
+            {currentView !== 'home' && currentView !== 'product' && onBack && (
+              <button
+                onClick={onBack}
+                aria-label="Go back"
+                className="lg:hidden -ml-1.5 p-2 rounded-lg text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+            )}
             {/* Logo — always readable */}
             <button
               onClick={() => handleNav('home')}
@@ -90,6 +102,7 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 <span className="text-[#0D9488]"> Corner</span>
               </span>
             </button>
+            </div>
 
             {/* Desktop Navigation — marketing links hidden inside the app */}
             {!isApp && (

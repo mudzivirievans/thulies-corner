@@ -25,9 +25,24 @@ import Footer from '@/components/chinaconnect/Footer'
 
 export default function Home() {
   const [currentView, setCurrentView] = useState<ViewType>('home')
+  /* Simple navigation history so the back arrow returns to the actual
+     previous page (not just home). */
+  const [history, setHistory] = useState<ViewType[]>([])
 
   const handleNavigate = (view: string) => {
+    setHistory((prev) => [...prev, currentView])
     setCurrentView(view as ViewType)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleBack = () => {
+    if (history.length > 0) {
+      const target = history[history.length - 1]
+      setHistory(history.slice(0, -1))
+      setCurrentView(target)
+    } else {
+      setCurrentView('home')
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -37,7 +52,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navigation — on EVERY page */}
-      <Navigation currentView={currentView} onNavigate={handleNavigate} />
+      <Navigation currentView={currentView} onNavigate={handleNavigate} onBack={handleBack} />
 
       {/* Main content */}
       <main className={`flex-1 ${needsBackBar ? 'pt-[112px]' : ''}`}>
