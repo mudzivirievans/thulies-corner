@@ -56,13 +56,13 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="text-center mb-14">
                     <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Businesses Across Botswana</h2>
-                    <p className="text-gray-500 text-lg">From small shops to large enterprises, everyone imports with ChinaConnect</p>
+                    <p className="text-gray-500 text-lg">From small shops to large enterprises, everyone imports with Thulie's Corner</p>
                   </div>
                   <div className="grid md:grid-cols-3 gap-6">
                     {[
-                      { name: 'Thabo M.', role: 'Electronics Retailer', quote: 'ChinaConnect made importing phones and gadgets so easy. I used to spend weeks dealing with suppliers. Now it takes minutes.', rating: 5 },
-                      { name: 'Mma T.', role: 'Office Manager', quote: 'We furnish our entire office through ChinaConnect. The transparent pricing and real-time tracking give me peace of mind.', rating: 5 },
-                      { name: 'David S.', role: 'Solar Installer', quote: 'Sourcing solar panels from China was always complicated. ChinaConnect handles everything — I just place the order and track the shipment.', rating: 5 },
+                      { name: 'Thabo M.', role: 'Electronics Retailer', quote: "Thulie's Corner made importing phones and gadgets so easy. I used to spend weeks dealing with suppliers. Now it takes minutes.", rating: 5 },
+                      { name: 'Mma T.', role: 'Office Manager', quote: "We furnish our entire office through Thulie's Corner. The transparent pricing and real-time tracking give me peace of mind.", rating: 5 },
+                      { name: 'David S.', role: 'Solar Installer', quote: "Sourcing solar panels from China was always complicated. Thulie's Corner handles everything — I just place the order and track the shipment.", rating: 5 },
                     ].map((testimonial, i) => (
                       <motion.div
                         key={testimonial.name}

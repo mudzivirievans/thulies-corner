@@ -64,8 +64,8 @@ export default function Navigation({ currentView, onNavigate }: NavigationProps)
                 <Package className="w-4 h-4 text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                <span className={scrolled ? 'text-gray-900' : 'text-white'}>China</span>
-                <span className="text-[#0D9488]">Connect</span>
+                <span className={scrolled ? 'text-gray-900' : 'text-white'}>Thulie's</span>
+                <span className="text-[#0D9488]"> Corner</span>
               </span>
             </button>
 

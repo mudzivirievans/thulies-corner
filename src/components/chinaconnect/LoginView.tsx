@@ -34,7 +34,7 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
               <Package className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold">
-              China<span className="text-[#0D9488]">Connect</span>
+              Thulie's<span className="text-[#0D9488]"> Corner</span>
             </span>
           </div>
 
@@ -133,7 +133,7 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
                 <input
                   type="tel"
                   className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D9488]/20 focus:border-[#0D9488]"
-                  placeholder="+267 71 234 567"
+                  placeholder="+267 74 791 379"
                 />
               </div>
               <div>
@@ -155,7 +155,7 @@ export default function LoginView({ onNavigate }: LoginViewProps) {
           )}
 
           <p className="text-xs text-gray-400 text-center mt-6">
-            By continuing, you agree to ChinaConnect&apos;s Terms of Service and Privacy Policy.
+            By continuing, you agree to Thulie's Corner&apos;s Terms of Service and Privacy Policy.
           </p>
         </div>
       </motion.div>

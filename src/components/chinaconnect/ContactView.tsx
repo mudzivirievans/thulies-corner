@@ -41,8 +41,8 @@ export default function ContactView() {
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-6">
               {[
-                { icon: Mail, label: 'Email', value: 'support@chinaconnect.co.bw', sub: 'We respond within 24 hours' },
-                { icon: Phone, label: 'Phone', value: '+267 71 234 567', sub: 'Mon-Fri, 8am-6pm CAT' },
+                { icon: Mail, label: 'Email', value: 'support@thuliescorner.co.bw', sub: 'We respond within 24 hours' },
+                { icon: Phone, label: 'Phone', value: '+267 74 791 379', sub: 'Mon-Fri, 8am-6pm CAT' },
                 { icon: MapPin, label: 'Office', value: 'Gaborone, Botswana', sub: 'Plot 123, CBD' },
                 { icon: Clock, label: 'Hours', value: 'Mon - Fri: 8:00 - 18:00', sub: 'Sat: 9:00 - 13:00' },
               ].map((item, index) => (

@@ -75,7 +75,7 @@ export default function ServicesView({ onNavigate }: ServicesViewProps) {
               Import Services Built for <span className="gradient-text">Africa</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8">
-              From sourcing to delivery, ChinaConnect handles every step of the import process so you can focus on growing your business.
+              From sourcing to delivery, Thulie's Corner handles every step of the import process so you can focus on growing your business.
             </p>
             <Button
               onClick={() => onNavigate('contact')}

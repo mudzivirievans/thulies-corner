@@ -23,7 +23,7 @@ const aiResponses: Record<string, string> = {
   'how much': 'Based on current rates, importing 50 office chairs from China would cost approximately:\n\n• Product cost: ~P 92,500 (P 1,850 each)\n• Sea freight: ~P 8,200\n• Import duties: ~P 5,400\n• Service charge: ~P 3,780\n\n**Total estimated: P 109,880**\n\nWould you like me to create a detailed quote for you?',
   'where is my shipment': 'Your shipment **CN-2847** (iPhone 17 Pro Max) is currently **In Transit**.\n\n📍 Current location: Departed Guangzhou via air freight\n🛫 Method: Air Freight\n📅 Estimated arrival: December 24, 2024\n⏱️ 6 days remaining\n\nWould you like to see the full tracking timeline?',
   'how long does sea freight': 'Sea freight from China to Botswana typically takes:\n\n🚢 **Standard Sea Freight**: 25-35 business days\n⚡ **Express Sea Freight**: 18-25 business days\n✈️ **Air Freight** (for comparison): 7-14 business days\n\nSea freight is more cost-effective for bulk orders. For a 20ft container, rates start at approximately P 15,000.',
-  'can i source': 'Yes! ChinaConnect can source virtually any product from China. Here\'s how:\n\n1. **Paste a link** from Alibaba, 1688, Taobao, or AliExpress\n2. **Describe what you need** and we\'ll find suppliers\n3. **Get a quote** within 24-48 hours\n\nOur sourcing team works with verified suppliers across China to get you the best prices and quality.',
+  'can i source': 'Yes! Thulie\'s Corner can source virtually any product from China. Here\'s how:\n\n1. **Paste a link** from Alibaba, 1688, Taobao, or AliExpress\n2. **Describe what you need** and we\'ll find suppliers\n3. **Get a quote** within 24-48 hours\n\nOur sourcing team works with verified suppliers across China to get you the best prices and quality.',
   'default': 'I can help you with:\n\n• Shipment status and tracking\n• Import cost estimation\n• Product sourcing guidance\n• Payment and billing questions\n• General customer support\n\nWhat would you like to know?',
 }
 
@@ -34,7 +34,7 @@ export default function AIAssistant() {
     {
       id: '1',
       role: 'assistant',
-      content: "Hello! I'm your ChinaConnect AI assistant. I can help with shipment tracking, import costs, product sourcing, and more. How can I help you today?",
+      content: "Hello! I'm your Thulie's Corner AI assistant. I can help with shipment tracking, import costs, product sourcing, and more. How can I help you today?",
       timestamp: new Date(),
     },
   ])

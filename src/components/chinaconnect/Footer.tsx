@@ -19,11 +19,11 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <Package className="w-4 h-4 text-white" />
               </div>
               <span className="text-lg font-bold">
-                China<span className="text-[#0D9488]">Connect</span>
+                Thulie's<span className="text-[#0D9488]"> Corner</span>
               </span>
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-              The premium import platform for Botswana. Shop products from China, track shipments, and manage imports from one account.
+              Your trusted import partner. Shop products from China, track shipments, and manage imports from one account.
             </p>
           </div>
 
@@ -89,11 +89,11 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-sm text-white/40">
                 <Mail className="w-4 h-4" />
-                support@chinaconnect.co.bw
+                support@thuliescorner.co.bw
               </li>
               <li className="flex items-center gap-2 text-sm text-white/40">
                 <Phone className="w-4 h-4" />
-                +267 71 234 567
+                +267 74 791 379
               </li>
               <li className="flex items-start gap-2 text-sm text-white/40">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
@@ -105,10 +105,10 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; {new Date().getFullYear()} ChinaConnect. All rights reserved.
+            &copy; {new Date().getFullYear()} Thulie's Corner. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-white/30">Shop Products from China. Track Every Shipment. One Account.</span>
+            <span className="text-sm text-white/30">Your Bridge Between China and Botswana.</span>
           </div>
         </div>
       </div>

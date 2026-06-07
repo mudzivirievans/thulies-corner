@@ -57,7 +57,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
               Building Africa&apos;s Import <span className="gradient-text">Infrastructure</span>
             </h1>
             <p className="text-lg text-white/60 max-w-2xl mx-auto">
-              ChinaConnect was founded to solve a simple problem: importing from China should be as easy as shopping online. We are building the platform that makes this possible for Botswana and beyond.
+              Thulie's Corner was founded to solve a simple problem: importing from China should be as easy as shopping online. Founded by a Motswana who moved to China, we bridge the gap between Chinese suppliers and customers back home in Botswana.
             </p>
           </motion.div>
         </div>
@@ -126,9 +126,9 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
           <div className="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center mx-auto mb-6">
             <MapPin className="w-8 h-8 text-[#0D9488]" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Based in Gaborone</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Based in China, Serving Botswana</h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-8">
-            Our team is based in Gaborone, Botswana, with partner offices in Guangzhou and Shenzhen, China. We understand both markets and are uniquely positioned to bridge the gap.
+            Our founder moved from Botswana to China, giving us direct access to Chinese suppliers and firsthand understanding of what Botswana customers need. We are uniquely positioned to bridge the gap.
           </p>
           <Button
             onClick={() => onNavigate('contact')}

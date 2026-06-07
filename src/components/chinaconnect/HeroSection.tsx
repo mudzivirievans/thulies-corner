@@ -56,7 +56,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm mb-6">
                 <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                <span className="text-sm text-white/80 font-medium">Now serving Botswana</span>
+                <span className="text-sm text-white/80 font-medium">Shipping from China to Botswana</span>
               </div>
             </motion.div>
 
@@ -98,7 +98,7 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
                 onClick={() => onNavigate('track')}
                 variant="outline"
                 size="lg"
-                className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-base font-semibold rounded-xl backdrop-blur-sm"
+                className="border-white/30 text-white hover:bg-white/15 hover:border-white/50 px-8 py-6 text-base font-semibold rounded-xl backdrop-blur-sm bg-white/5"
               >
                 <Truck className="w-4 h-4 mr-2" />
                 Track Shipment

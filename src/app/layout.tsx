@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ChinaConnect — Import Anything From China",
+  title: "Thulie's Corner — Import Anything From China",
   description: "Shop products, request quotes, pay securely, and track every shipment from China to Botswana in one place.",
-  keywords: ["ChinaConnect", "import from China", "Botswana imports", "logistics", "shipping", "sourcing"],
+  keywords: ["Thulie's Corner", "import from China", "Botswana imports", "logistics", "shipping", "sourcing"],
   icons: {
     icon: "/favicon.svg",
   },
